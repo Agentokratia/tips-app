@@ -111,6 +111,23 @@ export function TokenSelector({
                 <span style={{ fontWeight: 500 }}>{token.symbol}</span>
               </button>
             ))}
+            <a
+              href="https://t.me/agentokratia"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "block",
+                padding: "8px 10px",
+                fontSize: "11px",
+                color: "var(--text-muted)",
+                textAlign: "center",
+                textDecoration: "none",
+                borderTop: "1px solid var(--border)",
+                marginTop: "4px",
+              }}
+            >
+              Not listed? <span style={{ textDecoration: "underline" }}>Contact us</span>
+            </a>
           </div>
         )}
       </div>
@@ -212,6 +229,23 @@ export function TokenSelector({
               onSelect={handleSelect}
             />
           ))}
+          <a
+            href="https://t.me/agentokratia"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "block",
+              padding: "10px 14px",
+              fontSize: "12px",
+              color: "var(--text-muted)",
+              textAlign: "center",
+              textDecoration: "none",
+              borderTop: "1px solid var(--border)",
+              marginTop: "6px",
+            }}
+          >
+            Token not listed? <span style={{ textDecoration: "underline" }}>Contact us</span>
+          </a>
         </div>
       )}
     </div>
