@@ -549,13 +549,17 @@ input, select {
 
 .tip-change-link {
   font-size: 12px;
-  color: var(--text-muted);
+  font-weight: 500;
+  color: var(--accent, #0052FF);
   text-decoration: none;
-  transition: color 0.15s ease;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--accent-subtle, rgba(0, 82, 255, 0.08));
+  transition: all 0.15s ease;
 }
 
 .tip-change-link:hover {
-  color: var(--text);
+  background: var(--accent-subtle-hover, rgba(0, 82, 255, 0.15));
 }
 
 .tip-divider {
