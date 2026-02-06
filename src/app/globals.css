@@ -1,0 +1,1348 @@
+/* Agentokratia Brand - Tip App */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono&display=swap');
+
+:root {
+  /* Core colors - Light mode */
+  --paper: #FAFAF8;
+  --ink: #1A1A1A;
+  --stone: #6B6B6B;
+  --sand: #9A9A9A;
+  --cloud: #F2F2EF;
+  --surface: #FFFFFF;
+
+  /* Aliases */
+  --bg: var(--paper);
+  --bg-card: var(--cloud);
+  --bg-elevated: var(--surface);
+  --text: var(--ink);
+  --text-muted: var(--stone);
+  --text-subtle: var(--sand);
+  --border: rgba(26, 26, 26, 0.08);
+  --border-med: rgba(26, 26, 26, 0.15);
+
+  /* Semantic colors */
+  --success: #22C55E;
+  --success-light: rgba(34, 197, 94, 0.1);
+  --error: #EF4444;
+  --error-light: rgba(239, 68, 68, 0.1);
+  --warning: #F59E0B;
+  --warning-light: rgba(245, 158, 11, 0.1);
+  --info: #3B82F6;
+
+  /* Typography */
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Spacing & Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #1A1A1A;
+  --ink: #FAFAF8;
+  --stone: #E5E5E2;
+  --sand: #6B6B6B;
+  --cloud: #252525;
+  --surface: #252525;
+
+  --bg: var(--paper);
+  --bg-card: var(--cloud);
+  --bg-elevated: var(--surface);
+  --text: var(--ink);
+  --text-muted: var(--stone);
+  --text-subtle: var(--sand);
+  --border: rgba(250, 250, 248, 0.08);
+  --border-med: rgba(250, 250, 248, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h1 { font-size: 48px; }
+h2 { font-size: 32px; }
+h3 { font-size: 24px; }
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, select {
+  font-family: inherit;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav-brand svg {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-brand span {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-card);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+.badge-live {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.badge-testnet {
+  background: var(--warning-light);
+  color: #B45309;
+}
+
+/* Layout */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  min-height: calc(100vh - 200px);
+}
+
+/* Cards */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.card-elevated {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #333;
+}
+
+[data-theme="dark"] .btn-primary:hover:not(:disabled) {
+  background: #E5E5E2;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border-med);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-card);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 8px 12px;
+}
+
+.btn-ghost:hover {
+  color: var(--text);
+  background: var(--bg-card);
+}
+
+/* Form Inputs */
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.input:hover {
+  border-color: var(--text-subtle);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+
+.input::placeholder {
+  color: var(--text-subtle);
+}
+
+.input-lg {
+  padding: 18px 20px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* Labels */
+.label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+/* Trust indicators */
+.trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--text);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-light {
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+}
+
+/* Success animation */
+@keyframes success-pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-animation {
+  animation: success-pop 0.4s ease-out;
+}
+
+/* Confetti */
+@keyframes confetti-fall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  animation: confetti-fall 3s ease-out forwards;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Footer - Always dark like x402-escrow */
+.footer {
+  border-top: none;
+  padding: 64px 24px 32px;
+  margin-top: auto;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.footer-brand-section svg {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+}
+
+.footer-brand {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+.footer-links-grid {
+  display: flex;
+  gap: 64px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.footer-link {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: none;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* ===== TIP PAGE - IDEO STYLE (Human-Centered Design) ===== */
+
+.tip-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-height: calc(100vh - 65px - 60px);
+  /* Subtle radial glow */
+  background:
+    radial-gradient(ellipse at top, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
+    var(--bg);
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tip-card {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  width: 100%;
+  max-width: 440px;
+  /* Layered shadow for depth */
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 2px 4px rgba(0, 0, 0, 0.02),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.04);
+  animation: card-enter 0.4s ease-out;
+}
+
+/* Header section */
+.tip-header {
+  margin-bottom: 4px;
+}
+
+.tip-header-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-subtle);
+}
+
+.tip-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+/* Form structure */
+.tip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tip-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tip-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+}
+
+.tip-label-hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-subtle);
+}
+
+.tip-token-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Wallet balance display - polished and trustworthy */
+.tip-balance {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.tip-balance .mono {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.tip-balance:hover {
+  border-color: var(--border-med);
+  background: var(--bg-elevated);
+}
+
+/* Recipient - Hero section with presence */
+.recipient-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  margin: 0 -8px;
+  background: linear-gradient(135deg,
+    rgba(34, 197, 94, 0.04) 0%,
+    transparent 60%);
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease;
+}
+
+.recipient-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--bg-card);
+  box-shadow:
+    0 0 0 2px var(--bg-elevated),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recipient-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.recipient-name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.3px;
+}
+
+.recipient-address {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.recipient-address:hover {
+  color: var(--text);
+}
+
+/* Form row */
+.tip-form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.tip-amount-input {
+  flex: 1;
+  position: relative;
+}
+
+.tip-amount-input .prefix {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 24px;
+  font-weight: 500;
+  pointer-events: none;
+  transition: color 0.15s ease;
+}
+
+.tip-amount-input:focus-within .prefix {
+  color: var(--text);
+}
+
+.tip-amount-input input {
+  width: 100%;
+  padding: 16px 16px 16px 40px;
+  font-size: 24px;
+  font-weight: 500;
+  border: 2px solid var(--border-med);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.tip-amount-input input:hover {
+  border-color: var(--text-subtle);
+}
+
+.tip-amount-input input:focus {
+  outline: none;
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08);
+}
+
+/* Hide number input spinners */
+.tip-amount-input input::-webkit-inner-spin-button,
+.tip-amount-input input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.tip-amount-input input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Quick amounts - inline */
+.tip-quick-amounts {
+  display: flex;
+  gap: 6px;
+}
+
+.tip-quick-btn {
+  min-width: 48px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tip-quick-btn:hover:not(.active) {
+  background: var(--bg-elevated);
+  border-color: var(--text-subtle);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.tip-quick-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tip-quick-btn:active {
+  transform: translateY(0);
+}
+
+/* Token selector row */
+.tip-token-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Quote breakdown - IDEO style with clear hierarchy */
+.tip-breakdown {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+/* Left accent bar */
+.tip-breakdown::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  background: var(--success);
+  border-radius: 0 2px 2px 0;
+  opacity: 0.7;
+}
+
+.tip-breakdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.tip-breakdown-label {
+  color: var(--text-muted);
+}
+
+.tip-breakdown-value {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.tip-breakdown-highlight {
+  color: var(--success);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.tip-breakdown-loading {
+  display: flex;
+  align-items: center;
+}
+
+.tip-breakdown-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-subtle);
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.tip-breakdown-note svg {
+  flex-shrink: 0;
+  color: var(--info);
+}
+
+.tip-breakdown-route {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+}
+
+.tip-route-via {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  padding: 2px 8px;
+  background: var(--bg-subtle, rgba(0, 0, 0, 0.05));
+  border-radius: 4px;
+}
+
+/* Legacy quote (keep for backward compat) */
+.tip-quote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.tip-quote-label {
+  color: var(--text-muted);
+}
+
+.tip-quote-value {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Submit button - primary CTA with presence */
+.tip-submit {
+  width: 100%;
+  padding: 18px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer effect */
+.tip-submit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.tip-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tip-submit:hover:not(:disabled)::after {
+  left: 100%;
+}
+
+.tip-submit:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tip-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.tip-submit svg {
+  transition: transform 0.2s ease;
+}
+
+.tip-submit:hover:not(:disabled) svg {
+  transform: translateX(4px);
+}
+
+/* Permit2 Approval Button - Secondary style to indicate prerequisite step */
+.tip-submit.tip-submit-approve {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--border-med);
+}
+
+.tip-submit.tip-submit-approve:hover:not(:disabled) {
+  background: var(--bg-card);
+  border-color: var(--text-muted);
+}
+
+/* States */
+.tip-error-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--error-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: var(--error);
+}
+
+.tip-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+}
+
+.tip-success-amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--success-light);
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  color: #166534;
+}
+
+.tip-success-amount .mono {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Connect wallet prompt - warm and inviting */
+.tip-connect-prompt {
+  text-align: center;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(180deg,
+    var(--bg-card) 0%,
+    transparent 100%);
+  border-radius: var(--radius-md);
+  margin: 0 -8px;
+}
+
+.tip-connect-prompt svg {
+  color: var(--text-subtle);
+  opacity: 0.5;
+  width: 32px;
+  height: 32px;
+}
+
+.tip-connect-prompt p {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+
+.tip-connect-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Submit button hint */
+.tip-submit-hint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-subtle);
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.tip-submit-hint::before {
+  content: '✓';
+  color: var(--success);
+  font-size: 11px;
+}
+
+/* Trust signals row - confident, not apologetic */
+.tip-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 24px -28px -28px;
+  padding: 14px 28px;
+  background: var(--bg-card);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border-top: 1px solid var(--border);
+}
+
+.tip-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+}
+
+.tip-trust-item svg {
+  color: var(--success);
+  opacity: 0.9;
+}
+
+/* Security badge - prominently displayed */
+.tip-security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(59, 130, 246, 0.06) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--success);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.tip-security-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Protocol info - builds credibility */
+.tip-protocol-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  margin-top: 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--text-subtle);
+}
+
+.tip-protocol-info a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tip-protocol-info a:hover {
+  color: var(--text);
+}
+
+/* Verified recipient indicator */
+.recipient-verified {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: var(--success);
+  border-radius: 50%;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.recipient-verified svg {
+  width: 10px;
+  height: 10px;
+  color: white;
+}
+
+/* Loading state */
+.tip-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Error inline */
+.tip-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--error-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--error);
+}
+
+/* Mini footer for tip page */
+.tip-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-subtle);
+}
+
+.tip-footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.tip-footer a:hover {
+  color: var(--text);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 768px) {
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+
+  .main-content {
+    padding: 32px 16px;
+  }
+
+  .trust-row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-links-grid {
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .tip-page {
+    padding: 16px;
+  }
+
+  .tip-card {
+    padding: 24px;
+  }
+
+  .nav {
+    padding: 12px 16px;
+  }
+
+  .nav-brand span {
+    display: none;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 480px) {
+  .tip-page {
+    padding: 12px;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+
+  .tip-card {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .tip-form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tip-quick-amounts {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tip-quick-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .recipient-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .recipient-name {
+    font-size: 16px;
+  }
+
+  .recipient-address {
+    font-size: 12px;
+  }
+
+  .tip-amount-input input {
+    font-size: 20px;
+    padding: 14px 14px 14px 34px;
+  }
+
+  .tip-amount-input .prefix {
+    font-size: 20px;
+  }
+
+  .tip-submit {
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+
+  .footer {
+    padding: 32px 16px;
+  }
+
+  .footer-links-grid {
+    gap: 24px;
+  }
+
+  .footer-col {
+    min-width: 100px;
+  }
+
+  /* Mobile trust signals - wrap nicely */
+  .tip-trust {
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 12px 20px;
+    margin: 20px -20px -20px;
+  }
+
+  .tip-trust-item {
+    font-size: 10px;
+  }
+
+  .tip-trust-item svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .tip-security-badge {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  .tip-protocol-info {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .tip-balance {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .recipient-verified {
+    width: 14px;
+    height: 14px;
+  }
+
+  .recipient-verified svg {
+    width: 8px;
+    height: 8px;
+  }
+}

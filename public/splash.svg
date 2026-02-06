@@ -1,0 +1,8 @@
+<svg width="800" height="418" viewBox="0 0 800 418" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="418" fill="#FAFAF8"/>
+  <circle cx="400" cy="180" r="60" fill="#1A1A1A"/>
+  <path d="M400 145L400 215" stroke="#FAFAF8" stroke-width="8" stroke-linecap="round"/>
+  <path d="M430 180L400 215L370 180" stroke="#FAFAF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="400" y="290" font-family="system-ui, sans-serif" font-size="32" font-weight="600" fill="#1A1A1A" text-anchor="middle">Tip Anyone</text>
+  <text x="400" y="330" font-family="system-ui, sans-serif" font-size="18" fill="#666666" text-anchor="middle">Send tips with any token. Zero fees.</text>
+</svg>

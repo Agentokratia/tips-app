@@ -1,0 +1,10 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FAFAF8"/>
+  <circle cx="600" cy="250" r="80" fill="#1A1A1A"/>
+  <path d="M600 195L600 305" stroke="#FAFAF8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M640 250L600 305L560 250" stroke="#FAFAF8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="600" y="390" font-family="system-ui, sans-serif" font-size="56" font-weight="600" fill="#1A1A1A" text-anchor="middle">Tip Anyone</text>
+  <text x="600" y="450" font-family="system-ui, sans-serif" font-size="24" fill="#666666" text-anchor="middle">Send tips to any Basename, ENS, or address</text>
+  <text x="600" y="490" font-family="system-ui, sans-serif" font-size="20" fill="#888888" text-anchor="middle">Pay with any token. Zero fees. Instant settlement.</text>
+  <text x="600" y="570" font-family="system-ui, sans-serif" font-size="18" fill="#0052FF" text-anchor="middle">Powered by x402 Protocol on Base</text>
+</svg>
