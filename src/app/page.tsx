@@ -7,6 +7,7 @@ import { isAddress } from "viem";
 export default function Home() {
   const [recipient, setRecipient] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,6 +30,7 @@ export default function Home() {
       return;
     }
 
+    setIsLoading(true);
     router.push(`/${encodeURIComponent(trimmed)}`);
   };
 
@@ -136,18 +138,29 @@ export default function Home() {
             <button
               type="submit"
               className="btn btn-primary"
+              disabled={isLoading}
               style={{
                 width: "100%",
                 padding: "16px 24px",
                 fontSize: "16px",
                 fontWeight: 600,
+                opacity: isLoading ? 0.7 : 1,
               }}
             >
               <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
-                Continue
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
+                {isLoading ? (
+                  <>
+                    <div className="spinner spinner-light" style={{ width: "18px", height: "18px" }} />
+                    Loading...
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </>
+                )}
               </span>
             </button>
           </form>
