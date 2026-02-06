@@ -130,7 +130,7 @@ export function TipPageClient({ address, ensName, ensAvatar, error }: TipPageCli
             </div>
             <p style={{ marginTop: "12px" }}>Connect your wallet to send a tip</p>
             <span className="tip-connect-hint">
-              Pay with USDC, WETH, DAI, or USDT. They receive USDC instantly.
+              Pay with multiple tokens. They receive USDC instantly.
             </span>
             <div className="tip-protocol-info">
               <span>Powered by</span>
