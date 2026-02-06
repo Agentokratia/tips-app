@@ -88,11 +88,12 @@ function useDebounce<T>(value: T, delay: number): T {
 interface TipFormProps {
   recipient: string;
   recipientName?: string;
+  initialAmount?: string;
   onSuccess: (txHash: string, amount: string) => void;
 }
 
-export function TipForm({ recipient, recipientName, onSuccess }: TipFormProps) {
-  const [amount, setAmount] = useState("5");
+export function TipForm({ recipient, recipientName, initialAmount, onSuccess }: TipFormProps) {
+  const [amount, setAmount] = useState(initialAmount || "5");
   const [selectedToken, setSelectedToken] = useState<Token | null>(null);
   const [error, setError] = useState<string | null>(null);
 

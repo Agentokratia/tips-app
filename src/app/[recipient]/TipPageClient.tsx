@@ -10,9 +10,11 @@ interface TipPageClientProps {
   ensName: string | null;
   ensAvatar: string | null;
   error?: string;
+  initialAmount?: string;
+  embed?: boolean;
 }
 
-export function TipPageClient({ address, ensName, ensAvatar, error }: TipPageClientProps) {
+export function TipPageClient({ address, ensName, ensAvatar, error, initialAmount, embed }: TipPageClientProps) {
   const { isConnected } = useAccount();
   const [success, setSuccess] = useState<{
     txHash: string;
@@ -92,6 +94,21 @@ export function TipPageClient({ address, ensName, ensAvatar, error }: TipPageCli
               Send another
             </button>
           </div>
+          {!embed && (
+            <a
+              href="/"
+              style={{
+                display: "block",
+                marginTop: "12px",
+                fontSize: "13px",
+                color: "var(--text-muted)",
+                textAlign: "center",
+                textDecoration: "none",
+              }}
+            >
+              Tip someone else
+            </a>
+          )}
         </div>
       </div>
     );
@@ -103,6 +120,11 @@ export function TipPageClient({ address, ensName, ensAvatar, error }: TipPageCli
         {/* Header */}
         <div className="tip-header">
           <span className="tip-header-label">You're tipping</span>
+          {!embed && (
+            <a href="/" className="tip-change-link">
+              Change
+            </a>
+          )}
         </div>
 
         <RecipientCard
@@ -117,6 +139,7 @@ export function TipPageClient({ address, ensName, ensAvatar, error }: TipPageCli
           <TipForm
             recipient={address}
             recipientName={displayName}
+            initialAmount={initialAmount}
             onSuccess={(txHash, amount) => setSuccess({ txHash, amount })}
           />
         ) : (

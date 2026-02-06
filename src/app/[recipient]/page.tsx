@@ -5,6 +5,7 @@ import { TipPageClient } from "./TipPageClient";
 
 interface PageProps {
   params: Promise<{ recipient: string }>;
+  searchParams: Promise<{ amount?: string; embed?: string }>;
 }
 
 // Mainnet client for .eth ENS resolution
@@ -130,8 +131,9 @@ async function resolveRecipient(recipient: string) {
   return { address: null, ensName: null, ensAvatar: null, error: "Invalid address or name" };
 }
 
-export default async function TipPage({ params }: PageProps) {
+export default async function TipPage({ params, searchParams }: PageProps) {
   const { recipient } = await params;
+  const { amount, embed } = await searchParams;
   const resolved = await resolveRecipient(recipient);
 
   return (
@@ -140,6 +142,8 @@ export default async function TipPage({ params }: PageProps) {
       ensName={resolved.ensName}
       ensAvatar={resolved.ensAvatar}
       error={"error" in resolved ? resolved.error : undefined}
+      initialAmount={amount}
+      embed={embed === "true"}
     />
   );
 }
