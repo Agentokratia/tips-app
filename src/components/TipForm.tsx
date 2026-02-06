@@ -555,7 +555,7 @@ export function TipForm({ recipient, recipientName, initialAmount, onSuccess }: 
             </>
           ) : (
             <>
-              <span>Send ${amount || "0"} to {displayRecipient}</span>
+              <span>Tip ${amount || "0"} to {displayRecipient}</span>
               {ArrowIcon}
             </>
           )}
