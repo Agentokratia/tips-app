@@ -218,7 +218,7 @@ function generateFullWidget(
       </div>
       <div class="info">
         <h3>Tip ${displayRecipient}</h3>
-        <p>Pay with multiple tokens</p>
+        <p>Tip with any token</p>
       </div>
     </div>
 

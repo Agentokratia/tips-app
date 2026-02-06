@@ -76,7 +76,7 @@ export default function Home() {
           }}
         >
           Send instant tips to any Basename, ENS, or address.
-          Pay with multiple tokens. Recipients receive USDC.
+          Tip with any token. Recipients receive USDC.
         </p>
 
         {/* Form */}

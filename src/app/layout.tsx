@@ -15,11 +15,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Tip Anyone | Agentokratia",
-  description: "Send tips to any Basename, ENS, or address. Pay with multiple tokens. Zero fees.",
+  description: "Send tips to any Basename, ENS, or address. Tip with any token. Zero fees.",
   metadataBase: new URL(APP_URL),
   openGraph: {
     title: "Tip Anyone | Agentokratia",
-    description: "Send tips to any Basename, ENS, or address. Pay with multiple tokens. Zero fees.",
+    description: "Send tips to any Basename, ENS, or address. Tip with any token. Zero fees.",
     url: APP_URL,
     siteName: "Tip Anyone",
     images: [{ url: "/og.svg", width: 1200, height: 630 }],
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Tip Anyone | Agentokratia",
-    description: "Send tips to any Basename, ENS, or address. Pay with multiple tokens. Zero fees.",
+    description: "Send tips to any Basename, ENS, or address. Tip with any token. Zero fees.",
     images: ["/og.svg"],
   },
 };
