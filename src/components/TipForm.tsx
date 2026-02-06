@@ -174,6 +174,8 @@ export function TipForm({ recipient, recipientName, onSuccess }: TipFormProps) {
     approve: approvePermit2,
     isApproving,
     needsApproval,
+    approvalStatus,
+    approvalTxHash,
   } = usePermit2(needsPermit2 ? (selectedToken?.address as `0x${string}`) : undefined);
 
   // Select the appropriate payment requirement based on token
@@ -488,28 +490,46 @@ export function TipForm({ recipient, recipientName, onSuccess }: TipFormProps) {
         </div>
       )}
 
-      {/* Approval button for non-USDC tokens */}
+      {/* Approval button for non-USDC tokens - standard Uniswap flow */}
       {needsPermit2 && needsApproval && selectedToken && (
-        <button
-          type="button"
-          onClick={handleApprove}
-          className="tip-submit tip-submit-approve"
-          disabled={isApproving || isCheckingAllowance}
-        >
-          {isApproving ? (
-            <>
-              <div className="spinner spinner-light" style={{ width: "16px", height: "16px" }} />
-              <span>Approving {selectedToken.symbol}...</span>
-            </>
-          ) : isCheckingAllowance ? (
-            <>
-              <div className="spinner spinner-light" style={{ width: "16px", height: "16px" }} />
-              <span>Checking allowance...</span>
-            </>
-          ) : (
-            <span>Approve {selectedToken.symbol} for Permit2</span>
+        <div className="tip-approval-section">
+          <button
+            type="button"
+            onClick={handleApprove}
+            className="tip-submit tip-submit-approve"
+            disabled={isApproving || isCheckingAllowance || approvalStatus === "pending-signature" || approvalStatus === "pending-confirmation"}
+          >
+            {approvalStatus === "pending-signature" ? (
+              <>
+                <div className="spinner spinner-light" style={{ width: "16px", height: "16px" }} />
+                <span>Waiting for signature...</span>
+              </>
+            ) : approvalStatus === "pending-confirmation" ? (
+              <>
+                <div className="spinner spinner-light" style={{ width: "16px", height: "16px" }} />
+                <span>Confirming approval...</span>
+              </>
+            ) : isCheckingAllowance ? (
+              <>
+                <div className="spinner spinner-light" style={{ width: "16px", height: "16px" }} />
+                <span>Checking allowance...</span>
+              </>
+            ) : (
+              <span>Approve {selectedToken.symbol} for Permit2</span>
+            )}
+          </button>
+          {/* Show transaction link during confirmation */}
+          {approvalStatus === "pending-confirmation" && approvalTxHash && (
+            <a
+              href={`https://basescan.org/tx/${approvalTxHash}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tip-tx-link"
+            >
+              View transaction →
+            </a>
           )}
-        </button>
+        </div>
       )}
 
       {/* Submit button (shown after approval or for USDC) */}
@@ -543,7 +563,11 @@ export function TipForm({ recipient, recipientName, onSuccess }: TipFormProps) {
 
       {/* Microcopy hint */}
       <p className="tip-submit-hint">
-        {needsPermit2 && needsApproval
+        {needsPermit2 && needsApproval && approvalStatus === "pending-signature"
+          ? "Please confirm the approval in your wallet."
+          : needsPermit2 && needsApproval && approvalStatus === "pending-confirmation"
+          ? "Waiting for on-chain confirmation..."
+          : needsPermit2 && needsApproval
           ? "One-time approval lets Permit2 transfer tokens on your behalf."
           : "One signature. You pay zero gas. Funds go directly to recipient."}
       </p>

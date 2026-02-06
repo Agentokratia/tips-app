@@ -954,6 +954,34 @@ input, select {
   border-color: var(--text-muted);
 }
 
+/* Approval section wrapper for button + tx link */
+.tip-approval-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Transaction link during approval confirmation */
+.tip-tx-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--info);
+  text-decoration: none;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(59, 130, 246, 0.08);
+  transition: all 0.2s ease;
+}
+
+.tip-tx-link:hover {
+  background: rgba(59, 130, 246, 0.15);
+  color: #2563eb;
+}
+
 /* States */
 .tip-error-icon {
   width: 56px;

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 import { erc20Abi, maxUint256, type Address } from "viem";
@@ -42,21 +43,30 @@ export function usePermit2Allowance(
   });
 }
 
+/** Approval transaction state */
+export type ApprovalStatus = "idle" | "pending-signature" | "pending-confirmation" | "confirmed" | "error";
+
 /**
  * Approve a token to Permit2 contract.
  * Uses max uint256 for unlimited approval (standard practice for Permit2).
+ * Tracks transaction status for proper UI feedback.
  */
 export function usePermit2Approve() {
   const { data: walletClient } = useWalletClient();
   const publicClient = usePublicClient();
   const queryClient = useQueryClient();
   const { address } = useAccount();
+  const [status, setStatus] = useState<ApprovalStatus>("idle");
+  const [txHash, setTxHash] = useState<`0x${string}` | null>(null);
 
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: async (tokenAddress: Address) => {
       if (!walletClient || !publicClient || !address) {
         throw new Error("Wallet not connected");
       }
+
+      setStatus("pending-signature");
+      setTxHash(null);
 
       // Simulate the transaction first
       const { request } = await publicClient.simulateContract({
@@ -67,11 +77,14 @@ export function usePermit2Approve() {
         account: address,
       });
 
-      // Execute the approval
+      // Execute the approval (waiting for wallet signature)
       const hash = await walletClient.writeContract(request);
+      setTxHash(hash);
+      setStatus("pending-confirmation");
 
       // Wait for confirmation
       const receipt = await publicClient.waitForTransactionReceipt({ hash });
+      setStatus("confirmed");
 
       return { hash, receipt };
     },
@@ -81,7 +94,24 @@ export function usePermit2Approve() {
         queryKey: ["permit2Allowance", tokenAddress],
       });
     },
+    onError: () => {
+      setStatus("error");
+    },
   });
+
+  // Reset status when mutation is reset
+  const reset = () => {
+    mutation.reset();
+    setStatus("idle");
+    setTxHash(null);
+  };
+
+  return {
+    ...mutation,
+    status,
+    txHash,
+    reset,
+  };
 }
 
 /**
@@ -105,6 +135,11 @@ export function usePermit2(
     approve: tokenAddress ? () => approveMutation.mutateAsync(tokenAddress) : undefined,
     isApproving: approveMutation.isPending,
     approvalError: approveMutation.error,
+
+    // Approval transaction tracking (standard Uniswap flow)
+    approvalStatus: approveMutation.status,
+    approvalTxHash: approveMutation.txHash,
+    resetApproval: approveMutation.reset,
 
     // Combined state
     needsApproval: !allowanceQuery.isLoading && !allowanceQuery.data?.hasAllowance,
