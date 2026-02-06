@@ -192,7 +192,7 @@ export default function Home() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            <span>Any token</span>
+            <span>Multiple tokens</span>
           </div>
           <div className="trust-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
