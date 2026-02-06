@@ -76,7 +76,7 @@ export default function Home() {
           }}
         >
           Send instant tips to any Basename, ENS, or address.
-          Pay with any token. Recipients receive USDC.
+          Pay with multiple tokens. Recipients receive USDC.
         </p>
 
         {/* Form */}
@@ -207,6 +207,19 @@ export default function Home() {
             <span>x402 powered</span>
           </div>
         </div>
+
+        {/* Token support note */}
+        <p style={{ marginTop: "12px", fontSize: "13px", color: "var(--text-tertiary)" }}>
+          Token not listed?{" "}
+          <a
+            href="https://t.me/agentokratia"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "var(--text-secondary)", textDecoration: "underline" }}
+          >
+            Contact us
+          </a>
+        </p>
 
         {/* Developer CTA */}
         <a
